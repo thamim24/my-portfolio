@@ -42,7 +42,7 @@ $(document).ready(function () {
         event.preventDefault();
         
         // Initialize EmailJS with your public key
-        emailjs.init("hBWQs81me8JDT_928"); // Replace with your real public key
+        emailjs.init("xRRsJdIa3AuD5w3Z8"); // Replace with your real public key
 
         // Get form data
         const formData = {
@@ -53,7 +53,7 @@ $(document).ready(function () {
         };
 
         // Send email using EmailJS
-        emailjs.send('service_fm9x0im', 'template_kyqievi', formData)
+        emailjs.send('service_gjan8uc', 'template_2tgb0kd', formData)
             .then(function (response) {
                 console.log('SUCCESS!', response.status, response.text);
                 document.getElementById("contact-form").reset();
