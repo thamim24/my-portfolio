@@ -661,14 +661,19 @@ header .navbar ul li a:hover {
 .work .heading span {
   color: rgb(255, 230, 0);
 }
+/* Find and replace these two rules in your .work section */
+
 .work .box-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
   margin: 2rem;
+  justify-content: center; /* This is key for centering the last row */
 }
+
 .work .box-container .box {
-  flex: 1 1 30rem;
+  flex: 1 1 30rem;          /* Allows items to grow and fill rows */
+  max-width: 35rem;         /* Prevents a single item from growing too wide */
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   position: relative;
