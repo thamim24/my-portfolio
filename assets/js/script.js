@@ -26,6 +26,55 @@ const motionSelectors = [
 
 let srtop;
 
+let tiltGyroPermissionBound = false;
+
+async function requestDeviceOrientationPermission() {
+    if (typeof window === 'undefined') return false;
+    if (typeof DeviceOrientationEvent === 'undefined') return false;
+
+    // Most browsers (Android/desktop) don't require explicit permission.
+    if (typeof DeviceOrientationEvent.requestPermission !== 'function') {
+        return true;
+    }
+
+    try {
+        const result = await DeviceOrientationEvent.requestPermission();
+        return result === 'granted';
+    } catch (error) {
+        return false;
+    }
+}
+
+function bindTiltGyroPermissionTrigger() {
+    if (tiltGyroPermissionBound) return;
+    tiltGyroPermissionBound = true;
+
+    const handler = async () => {
+        // Only bother if effects are enabled and tilt exists.
+        if (document.body.classList.contains('effects-off')) return;
+        if (!document.querySelector('.tilt')) return;
+
+        const granted = await requestDeviceOrientationPermission();
+        if (granted) {
+            // Re-init so VanillaTilt can start receiving orientation events.
+            destroyTilt();
+            initTilt();
+        }
+    };
+
+    // iOS requires a user gesture; use existing UI interactions.
+    document.querySelectorAll('.tilt').forEach((el) => {
+        el.addEventListener('pointerdown', handler, { once: true, passive: true });
+        el.addEventListener('touchstart', handler, { once: true, passive: true });
+    });
+
+    const effectsToggle = document.getElementById('effects-toggle');
+    if (effectsToggle) {
+        effectsToggle.addEventListener('pointerdown', handler, { once: true, passive: true });
+        effectsToggle.addEventListener('touchstart', handler, { once: true, passive: true });
+    }
+}
+
 function setTheme(theme) {
     const isDark = theme === 'dark';
     document.body.classList.toggle('dark-theme', isDark);
@@ -80,6 +129,12 @@ function initTilt() {
     if (!window.VanillaTilt) return;
     VanillaTilt.init(document.querySelectorAll(".tilt"), {
         max: 15,
+        speed: 400,
+        gyroscope: true,
+        gyroscopeMinAngleX: -45,
+        gyroscopeMaxAngleX: 45,
+        gyroscopeMinAngleY: -45,
+        gyroscopeMaxAngleY: 45,
     });
 }
 
@@ -162,6 +217,7 @@ function setEffects(enabled) {
     if (enabled) {
         restoreRevealedContent();
         initTilt();
+        bindTiltGyroPermissionTrigger();
         initScrollReveal();
     } else {
         destroyTilt();
@@ -237,7 +293,7 @@ $(document).ready(function () {
         };
 
         // Send email using EmailJS
-        emailjs.send('service_gjan8uc', 'template_2tgb0kd', formData)
+        emailjs.send('service_6av6e3x', 'template_s6w1vfd', formData)
             .then(function (response) {
                 console.log('SUCCESS!', response.status, response.text);
                 document.getElementById("contact-form").reset();
