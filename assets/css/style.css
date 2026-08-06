@@ -892,7 +892,7 @@ body:not(.dark-theme) .effects-toggle__state {
   font-size: 2rem;
   font-weight: 500;
   font-family: "Poppins";
-  margin-left: 0.5rem;
+  /* margin-left: 0 rem; */
 }
 /* skills media queries starts*/
 @media screen and (max-width: 600px) {
