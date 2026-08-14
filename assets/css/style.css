@@ -3074,3 +3074,26 @@ body.effects-off .scroll-indicator i{
     }
 
 }
+.profile-frame,
+.about-photo-frame{
+    transform-style:preserve-3d;
+    will-change:transform;
+    transform-origin:center center;
+}
+
+@media (hover:none) and (pointer:coarse){
+
+    .profile-frame:hover{
+        transform:none;
+    }
+
+    .profile-frame:hover img,
+    .about-photo-frame:hover img{
+        transform:none;
+    }
+
+    .profile-frame,
+    .about-photo-frame{
+        transition:transform .12s linear;
+    }
+}

@@ -1051,7 +1051,7 @@ typeWriter();
 
 
 /* =========================================================
-   TILT
+   TILT + MOBILE DEVICE TILT
 ========================================================= */
 
 const tiltElements=[
@@ -1060,252 +1060,164 @@ const tiltElements=[
     )
 ];
 
-
-const tiltState=
-    new WeakMap();
-
+const tiltState=new WeakMap();
 
 let gyroPermissionBound=false;
 let gyroEnabled=false;
 
+function setTilt(element,rotateX,rotateY){
 
-function setTilt(
-    element,
-    rotateX,
-    rotateY
-){
-
-    const state=
-        tiltState.get(
-            element
-        );
-
+    const state=tiltState.get(element);
 
     if(!state){
         return;
     }
 
+    state.targetX=rotateX;
+    state.targetY=rotateY;
 
-    state.targetX=
-        rotateX;
-
-
-    state.targetY=
-        rotateY;
-
-
-    if(!state.raf){
-
-        state.raf=
-            requestAnimationFrame(
-                ()=>{
-
-                    const nextX=
-                        state.currentX+
-                        (
-                            state.targetX-
-                            state.currentX
-                        )*.18;
-
-
-                    const nextY=
-                        state.currentY+
-                        (
-                            state.targetY-
-                            state.currentY
-                        )*.18;
-
-
-                    state.currentX=
-                        nextX;
-
-
-                    state.currentY=
-                        nextY;
-
-
-                    element.style.transform=
-                        `perspective(1000px) rotateX(${nextX}deg) rotateY(${nextY}deg) translateY(-6px)`;
-
-
-                    state.raf=
-                        null;
-
-
-                    if(
-                        Math.abs(
-                            state.targetX-
-                            state.currentX
-                        )>.03||
-                        Math.abs(
-                            state.targetY-
-                            state.currentY
-                        )>.03
-                    ){
-
-                        setTilt(
-                            element,
-                            state.targetX,
-                            state.targetY
-                        );
-
-                    }
-
-                }
-            );
-
+    if(state.raf){
+        return;
     }
 
+    state.raf=requestAnimationFrame(()=>{
+
+        const nextX=
+            state.currentX+
+            (state.targetX-state.currentX)*.16;
+
+        const nextY=
+            state.currentY+
+            (state.targetY-state.currentY)*.16;
+
+        state.currentX=nextX;
+        state.currentY=nextY;
+
+        element.style.transform=
+            `perspective(1000px)
+             rotateX(${nextX}deg)
+             rotateY(${nextY}deg)
+             translateY(-6px)`;
+
+        state.raf=null;
+
+        if(
+            Math.abs(state.targetX-state.currentX)>.03||
+            Math.abs(state.targetY-state.currentY)>.03
+        ){
+            setTilt(
+                element,
+                state.targetX,
+                state.targetY
+            );
+        }
+
+    });
 }
 
 
-function resetTilt(
-    element
-){
+function resetTilt(element){
 
-    const state=
-        tiltState.get(
-            element
-        );
-
+    const state=tiltState.get(element);
 
     if(!state){
         return;
     }
-
 
     state.targetX=0;
     state.targetY=0;
 
-
-    setTilt(
-        element,
-        0,
-        0
-    );
-
-
-    setTimeout(
-        ()=>{
-
-            if(
-                Math.abs(
-                    state.currentX
-                )<.1&&
-                Math.abs(
-                    state.currentY
-                )<.1
-            ){
-
-                element.style.transform=
-                    "";
-
-            }
-
-        },
-        220
-    );
+    setTilt(element,0,0);
 
 }
 
+
+/* =========================================================
+   INITIALIZE TILT
+========================================================= */
 
 function initTilt(){
 
-    if(
-        !window.matchMedia(
-            "(pointer:fine)"
-        ).matches
-    ){
-        return;
-    }
+    tiltElements.forEach(element=>{
 
-
-    tiltElements.forEach(
-        element=>{
-
-            if(
-                tiltState.has(
-                    element
-                )
-            ){
-                return;
-            }
-
-
-            tiltState.set(
-                element,
-                {
-                    currentX:0,
-                    currentY:0,
-                    targetX:0,
-                    targetY:0,
-                    raf:null
-                }
-            );
-
-
-            element.addEventListener(
-                "pointermove",
-                event=>{
-
-                    const rect=
-                        element.getBoundingClientRect();
-
-
-                    const x=
-                        (
-                            event.clientX-
-                            rect.left
-                        )/
-                        rect.width;
-
-
-                    const y=
-                        (
-                            event.clientY-
-                            rect.top
-                        )/
-                        rect.height;
-
-
-                    const rotateY=
-                        (x-.5)*14;
-
-
-                    const rotateX=
-                        (.5-y)*14;
-
-
-                    setTilt(
-                        element,
-                        rotateX,
-                        rotateY
-                    );
-
-                }
-            );
-
-
-            element.addEventListener(
-                "pointerleave",
-                ()=>{
-                    resetTilt(
-                        element
-                    );
-                }
-            );
-
+        if(tiltState.has(element)){
+            return;
         }
-    );
+
+        tiltState.set(
+            element,
+            {
+                currentX:0,
+                currentY:0,
+                targetX:0,
+                targetY:0,
+                raf:null
+            }
+        );
+
+        /* Desktop mouse tilt */
+
+        element.addEventListener(
+            "pointermove",
+            event=>{
+
+                if(
+                    !window.matchMedia(
+                        "(pointer:fine)"
+                    ).matches
+                ){
+                    return;
+                }
+
+                const rect=
+                    element.getBoundingClientRect();
+
+                const x=
+                    (
+                        event.clientX-
+                        rect.left
+                    )/
+                    rect.width;
+
+                const y=
+                    (
+                        event.clientY-
+                        rect.top
+                    )/
+                    rect.height;
+
+                const rotateY=
+                    (x-.5)*14;
+
+                const rotateX=
+                    (.5-y)*14;
+
+                setTilt(
+                    element,
+                    rotateX,
+                    rotateY
+                );
+
+            }
+        );
+
+
+        element.addEventListener(
+            "pointerleave",
+            ()=>{
+                resetTilt(element);
+            }
+        );
+
+    });
 
 }
-
 
 initTilt();
 
 
 /* =========================================================
-   GYROSCOPE
+   MOBILE DEVICE ORIENTATION
 ========================================================= */
 
 async function requestGyroPermission(){
@@ -1317,6 +1229,10 @@ async function requestGyroPermission(){
         return false;
     }
 
+    /*
+     * Android and most browsers do not require
+     * an explicit permission request.
+     */
 
     if(
         typeof DeviceOrientationEvent
@@ -1325,13 +1241,25 @@ async function requestGyroPermission(){
         return true;
     }
 
+    /*
+     * iOS Safari requires permission from a
+     * user interaction.
+     */
 
     try{
 
-        return await DeviceOrientationEvent
-            .requestPermission()==="granted";
+        const permission=
+            await DeviceOrientationEvent
+                .requestPermission();
 
-    }catch{
+        return permission==="granted";
+
+    }catch(error){
+
+        console.warn(
+            "Device orientation permission was not granted.",
+            error
+        );
 
         return false;
 
@@ -1339,6 +1267,10 @@ async function requestGyroPermission(){
 
 }
 
+
+/* =========================================================
+   ENABLE GYROSCOPE
+========================================================= */
 
 async function enableGyroscope(){
 
@@ -1349,63 +1281,68 @@ async function enableGyroscope(){
         return;
     }
 
-
     gyroPermissionBound=true;
-
 
     const granted=
         await requestGyroPermission();
 
-
     if(!granted){
+
+        gyroPermissionBound=false;
+
         return;
     }
 
-
     gyroEnabled=true;
-
 
     window.addEventListener(
         "deviceorientation",
         event=>{
 
+            let beta=event.beta;
+            let gamma=event.gamma;
+
             if(
-                !event.beta&&
-                !event.gamma
+                beta===null||
+                gamma===null||
+                typeof beta==="undefined"||
+                typeof gamma==="undefined"
             ){
                 return;
             }
 
+            /*
+             * Keep the movement subtle.
+             *
+             * beta  = front/back movement
+             * gamma = left/right movement
+             */
 
             const rotateX=
                 Math.max(
-                    -12,
+                    -10,
                     Math.min(
-                        12,
-                        event.beta/6
+                        10,
+                        beta/7
                     )
                 );
-
 
             const rotateY=
                 Math.max(
-                    -12,
+                    -10,
                     Math.min(
-                        12,
-                        event.gamma/6
+                        10,
+                        gamma/7
                     )
                 );
 
-
             tiltElements.forEach(
                 element=>{
-
                     setTilt(
                         element,
                         rotateX,
                         rotateY
                     );
-
                 }
             );
 
@@ -1418,30 +1355,48 @@ async function enableGyroscope(){
 }
 
 
-tiltElements.forEach(
-    element=>{
+/* =========================================================
+   START MOBILE TILT AFTER FIRST USER GESTURE
+========================================================= */
 
-        element.addEventListener(
-            "pointerdown",
-            enableGyroscope,
-            {
-                once:true,
-                passive:true
-            }
-        );
+/*
+ * Important:
+ *
+ * The previous version only listened for touch/pointer
+ * events directly on the photos.
+ *
+ * That meant the gyroscope might never start if the
+ * user simply opened the website and tilted the phone.
+ *
+ * Now the first touch anywhere on the page can enable
+ * device orientation.
+ */
 
+if(
+    window.matchMedia(
+        "(pointer:coarse)"
+    ).matches
+){
 
-        element.addEventListener(
-            "touchstart",
-            enableGyroscope,
-            {
-                once:true,
-                passive:true
-            }
-        );
+    document.addEventListener(
+        "touchstart",
+        enableGyroscope,
+        {
+            once:true,
+            passive:true
+        }
+    );
 
-    }
-);
+    document.addEventListener(
+        "pointerdown",
+        enableGyroscope,
+        {
+            once:true,
+            passive:true
+        }
+    );
+
+}
 
 
 /* =========================================================
