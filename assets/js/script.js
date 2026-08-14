@@ -1051,60 +1051,53 @@ typeWriter();
 
 
 /* =========================================================
-   TILT + MOBILE DEVICE TILT
+   PHOTO TILT
+   DESKTOP MOUSE + MOBILE DEVICE ORIENTATION
 ========================================================= */
 
-const tiltElements=[
+const tiltElements = [
     ...document.querySelectorAll(
-        "[data-tilt],.project-image.tilt,.about-photo-frame.tilt"
+        "[data-tilt], .about-photo-frame.tilt"
     )
 ];
 
-const tiltState=new WeakMap();
+const tiltState = new WeakMap();
 
-let gyroPermissionBound=false;
-let gyroEnabled=false;
+function setTilt(element, rotateX, rotateY) {
 
-function setTilt(element,rotateX,rotateY){
+    const state = tiltState.get(element);
 
-    const state=tiltState.get(element);
+    if (!state) return;
 
-    if(!state){
-        return;
-    }
+    state.targetX = rotateX;
+    state.targetY = rotateY;
 
-    state.targetX=rotateX;
-    state.targetY=rotateY;
+    if (state.raf) return;
 
-    if(state.raf){
-        return;
-    }
+    state.raf = requestAnimationFrame(() => {
 
-    state.raf=requestAnimationFrame(()=>{
+        const nextX =
+            state.currentX +
+            (state.targetX - state.currentX) * 0.14;
 
-        const nextX=
-            state.currentX+
-            (state.targetX-state.currentX)*.16;
+        const nextY =
+            state.currentY +
+            (state.targetY - state.currentY) * 0.14;
 
-        const nextY=
-            state.currentY+
-            (state.targetY-state.currentY)*.16;
+        state.currentX = nextX;
+        state.currentY = nextY;
 
-        state.currentX=nextX;
-        state.currentY=nextY;
-
-        element.style.transform=
+        element.style.transform =
             `perspective(1000px)
              rotateX(${nextX}deg)
-             rotateY(${nextY}deg)
-             translateY(-6px)`;
+             rotateY(${nextY}deg)`;
 
-        state.raf=null;
+        state.raf = null;
 
-        if(
-            Math.abs(state.targetX-state.currentX)>.03||
-            Math.abs(state.targetY-state.currentY)>.03
-        ){
+        if (
+            Math.abs(state.targetX - state.currentX) > 0.02 ||
+            Math.abs(state.targetY - state.currentY) > 0.02
+        ) {
             setTilt(
                 element,
                 state.targetX,
@@ -1116,287 +1109,293 @@ function setTilt(element,rotateX,rotateY){
 }
 
 
-function resetTilt(element){
+function resetTilt(element) {
 
-    const state=tiltState.get(element);
+    const state = tiltState.get(element);
 
-    if(!state){
-        return;
-    }
+    if (!state) return;
 
-    state.targetX=0;
-    state.targetY=0;
+    state.targetX = 0;
+    state.targetY = 0;
 
-    setTilt(element,0,0);
-
+    setTilt(element, 0, 0);
 }
 
 
 /* =========================================================
-   INITIALIZE TILT
+   INITIALIZE PHOTO TILT
 ========================================================= */
 
-function initTilt(){
+tiltElements.forEach(element => {
 
-    tiltElements.forEach(element=>{
-
-        if(tiltState.has(element)){
-            return;
+    tiltState.set(
+        element,
+        {
+            currentX: 0,
+            currentY: 0,
+            targetX: 0,
+            targetY: 0,
+            raf: null
         }
+    );
 
-        tiltState.set(
-            element,
-            {
-                currentX:0,
-                currentY:0,
-                targetX:0,
-                targetY:0,
-                raf:null
+
+    /* -----------------------------------------------------
+       DESKTOP MOUSE TILT
+    ----------------------------------------------------- */
+
+    element.addEventListener(
+        "pointermove",
+        event => {
+
+            if (
+                !window.matchMedia(
+                    "(pointer:fine)"
+                ).matches
+            ) {
+                return;
             }
-        );
 
-        /* Desktop mouse tilt */
+            const rect =
+                element.getBoundingClientRect();
 
-        element.addEventListener(
-            "pointermove",
-            event=>{
+            const x =
+                (
+                    event.clientX -
+                    rect.left
+                ) / rect.width;
 
-                if(
-                    !window.matchMedia(
-                        "(pointer:fine)"
-                    ).matches
-                ){
-                    return;
-                }
+            const y =
+                (
+                    event.clientY -
+                    rect.top
+                ) / rect.height;
 
-                const rect=
-                    element.getBoundingClientRect();
+            const rotateY =
+                (x - 0.5) * 14;
 
-                const x=
-                    (
-                        event.clientX-
-                        rect.left
-                    )/
-                    rect.width;
+            const rotateX =
+                (0.5 - y) * 14;
 
-                const y=
-                    (
-                        event.clientY-
-                        rect.top
-                    )/
-                    rect.height;
+            setTilt(
+                element,
+                rotateX,
+                rotateY
+            );
 
-                const rotateY=
-                    (x-.5)*14;
-
-                const rotateX=
-                    (.5-y)*14;
-
-                setTilt(
-                    element,
-                    rotateX,
-                    rotateY
-                );
-
-            }
-        );
+        },
+        {
+            passive: true
+        }
+    );
 
 
-        element.addEventListener(
-            "pointerleave",
-            ()=>{
+    element.addEventListener(
+        "pointerleave",
+        () => {
+            if (
+                window.matchMedia(
+                    "(pointer:fine)"
+                ).matches
+            ) {
                 resetTilt(element);
             }
-        );
+        }
+    );
 
-    });
-
-}
-
-initTilt();
+});
 
 
 /* =========================================================
    MOBILE DEVICE ORIENTATION
 ========================================================= */
 
-async function requestGyroPermission(){
+let orientationEnabled = false;
+let orientationRequestStarted = false;
 
-    if(
-        typeof DeviceOrientationEvent===
+
+async function enableDeviceOrientation() {
+
+    if (orientationEnabled) {
+        return;
+    }
+
+    if (
+        typeof DeviceOrientationEvent ===
         "undefined"
-    ){
-        return false;
-    }
-
-    /*
-     * Android and most browsers do not require
-     * an explicit permission request.
-     */
-
-    if(
-        typeof DeviceOrientationEvent
-            .requestPermission!=="function"
-    ){
-        return true;
-    }
-
-    /*
-     * iOS Safari requires permission from a
-     * user interaction.
-     */
-
-    try{
-
-        const permission=
-            await DeviceOrientationEvent
-                .requestPermission();
-
-        return permission==="granted";
-
-    }catch(error){
-
+    ) {
         console.warn(
-            "Device orientation permission was not granted.",
-            error
+            "DeviceOrientationEvent is not supported."
         );
-
-        return false;
-
-    }
-
-}
-
-
-/* =========================================================
-   ENABLE GYROSCOPE
-========================================================= */
-
-async function enableGyroscope(){
-
-    if(
-        gyroEnabled||
-        gyroPermissionBound
-    ){
         return;
     }
 
-    gyroPermissionBound=true;
 
-    const granted=
-        await requestGyroPermission();
-
-    if(!granted){
-
-        gyroPermissionBound=false;
-
+    if (orientationRequestStarted) {
         return;
     }
 
-    gyroEnabled=true;
+    orientationRequestStarted = true;
 
-    window.addEventListener(
-        "deviceorientation",
-        event=>{
 
-            let beta=event.beta;
-            let gamma=event.gamma;
+    /* -----------------------------------------------------
+       iOS
+    ----------------------------------------------------- */
 
-            if(
-                beta===null||
-                gamma===null||
-                typeof beta==="undefined"||
-                typeof gamma==="undefined"
-            ){
+    if (
+        typeof DeviceOrientationEvent.requestPermission ===
+        "function"
+    ) {
+
+        try {
+
+            const permission =
+                await DeviceOrientationEvent
+                    .requestPermission();
+
+            if (permission !== "granted") {
+
+                console.warn(
+                    "Device orientation permission denied."
+                );
+
+                orientationRequestStarted = false;
+
                 return;
             }
 
+        } catch (error) {
+
+            console.warn(
+                "Device orientation permission failed.",
+                error
+            );
+
+            orientationRequestStarted = false;
+
+            return;
+        }
+    }
+
+
+    /* -----------------------------------------------------
+       START ORIENTATION LISTENER
+    ----------------------------------------------------- */
+
+    window.addEventListener(
+        "deviceorientation",
+        event => {
+
+            if (
+                event.beta === null ||
+                event.gamma === null
+            ) {
+                return;
+            }
+
+
             /*
-             * Keep the movement subtle.
+             * beta
+             * Front / back movement
              *
-             * beta  = front/back movement
-             * gamma = left/right movement
+             * gamma
+             * Left / right movement
              */
 
-            const rotateX=
+            let rotateX =
+                event.beta / 5;
+
+            let rotateY =
+                event.gamma / 5;
+
+
+            /*
+             * Keep the movement controlled.
+             */
+
+            rotateX =
                 Math.max(
-                    -10,
+                    -12,
                     Math.min(
-                        10,
-                        beta/7
+                        12,
+                        rotateX
                     )
                 );
 
-            const rotateY=
+            rotateY =
                 Math.max(
-                    -10,
+                    -12,
                     Math.min(
-                        10,
-                        gamma/7
+                        12,
+                        rotateY
                     )
                 );
+
 
             tiltElements.forEach(
-                element=>{
+                element => {
+
                     setTilt(
                         element,
                         rotateX,
                         rotateY
                     );
+
                 }
             );
 
         },
         {
-            passive:true
+            passive: true
         }
     );
 
+
+    orientationEnabled = true;
+
+    console.log(
+        "Mobile photo tilt enabled."
+    );
 }
 
 
 /* =========================================================
-   START MOBILE TILT AFTER FIRST USER GESTURE
+   ENABLE AFTER FIRST USER TOUCH
 ========================================================= */
 
-/*
- * Important:
- *
- * The previous version only listened for touch/pointer
- * events directly on the photos.
- *
- * That meant the gyroscope might never start if the
- * user simply opened the website and tilted the phone.
- *
- * Now the first touch anywhere on the page can enable
- * device orientation.
- */
+function startMobileTilt() {
 
-if(
-    window.matchMedia(
-        "(pointer:coarse)"
-    ).matches
-){
+    if (
+        !window.matchMedia(
+            "(pointer:coarse)"
+        ).matches
+    ) {
+        return;
+    }
 
-    document.addEventListener(
-        "touchstart",
-        enableGyroscope,
-        {
-            once:true,
-            passive:true
-        }
-    );
-
-    document.addEventListener(
-        "pointerdown",
-        enableGyroscope,
-        {
-            once:true,
-            passive:true
-        }
-    );
+    enableDeviceOrientation();
 
 }
+
+
+document.addEventListener(
+    "touchstart",
+    startMobileTilt,
+    {
+        once: true,
+        passive: true
+    }
+);
+
+
+document.addEventListener(
+    "pointerdown",
+    startMobileTilt,
+    {
+        once: true,
+        passive: true
+    }
+);
 
 
 /* =========================================================
