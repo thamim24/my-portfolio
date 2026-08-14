@@ -1,690 +1,2407 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="thamimul ansari, portfolio, thamimul, full stack dev, personal portfolio, portfolio design, portfolio website, react developer" />
-    <meta name="description" content="Welcome to Thamimul's Portfolio. Full-Stack Web Developer and AI Enthusiast" />
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <!-- Font Awesome -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Favicon -->
-    <link id='favicon' rel="icon" href="./assets/images/hero.png" type="image/png">
-    <title>Portfolio | Thamimul Ansari</title>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Thamimul Ansari — Full-Stack Web Developer and AI Enthusiast"
+  >
+
+  <meta
+    name="keywords"
+    content="Thamimul Ansari, Full Stack Developer, Java, Spring Boot, React, AI, Portfolio"
+  >
+
+  <title>Portfolio | Thamimul Ansari</title>
+
+  <!-- Favicon -->
+
+  <link
+    id="favicon"
+    rel="icon"
+    href="./assets/images/hero.png"
+    type="image/png"
+  >
+
+  <!-- Google Fonts -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Font Awesome -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  >
+
+  <!-- Main CSS -->
+
+  <link
+    rel="stylesheet"
+    href="./assets/css/style.css"
+  >
+
 </head>
+
 <body>
 
-<!-- pre loader -->
-<!-- <div class="loader-container">
-  <img draggable="false" src="./assets/images/preloader.gif" alt="">
-</div> -->
+  <!-- =====================================================
+     PAGE EFFECTS
+  ====================================================== -->
 
-<!-- navbar starts -->
-<header>
-        <a href="#home" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: bold; font-size: 18px; color: #ffffff;">
-          <div style="width: 35px; height: 35px; border:2px #fc8c05 solid; border-radius: 50%; overflow: hidden;">
-            <img src="./assets/images/hero.png" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;" />
+  <div
+    class="cursor-glow"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="page-noise"
+    aria-hidden="true"
+  ></div>
+
+  <!-- =====================================================
+     HEADER
+  ====================================================== -->
+
+  <header
+    class="site-header"
+    id="site-header"
+  >
+
+    <a
+      href="#home"
+      class="brand"
+    >
+
+      <span class="brand-photo">
+
+        <img
+          src="./assets/images/hero.png"
+          alt="Thamimul Ansari"
+        >
+
+      </span>
+
+      <span class="brand-name">
+        Thamimul Ansari
+      </span>
+
+    </a>
+
+    <!-- Desktop Navigation -->
+
+    <nav
+      class="desktop-nav"
+      aria-label="Primary navigation"
+    >
+
+      <a
+        class="active"
+        href="#home"
+      >
+        Home
+      </a>
+
+      <a href="#about">
+        About
+      </a>
+
+      <a href="#skills">
+        Skills
+      </a>
+
+      <a href="#education">
+        Education
+      </a>
+
+      <a href="#work">
+        Projects
+      </a>
+
+      <a href="#experience">
+        Experience
+      </a>
+
+      <a href="#contact">
+        Contact
+      </a>
+
+    </nav>
+
+    <!-- Header Actions -->
+
+    <div class="header-actions">
+
+      <a
+        class="resume-header"
+        href="https://drive.google.com/file/d/1h3FaurxZj_oPQtKEpd5cEIpxHG4d-E64/view?usp=drive_link"
+        target="_blank"
+        rel="noopener"
+      >
+
+        Resume
+
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+      </a>
+
+      <!-- Theme Toggle -->
+
+      <button
+        class="theme-toggle"
+        id="theme-toggle"
+        type="button"
+        aria-label="Switch to dark mode"
+        aria-pressed="false"
+      >
+
+        <span class="theme-track">
+
+          <span class="theme-icon">
+            ☀
+          </span>
+
+          <span class="theme-knob"></span>
+
+        </span>
+
+      </button>
+
+      <!-- Mobile Menu -->
+
+      <button
+        class="menu-button"
+        id="menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+      >
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </button>
+
+    </div>
+
+    <!-- Mobile Navigation -->
+
+    <nav
+      class="mobile-nav"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+    >
+
+      <a href="#home">
+        01 / Home
+      </a>
+
+      <a href="#about">
+        02 / About
+      </a>
+
+      <a href="#skills">
+        03 / Skills
+      </a>
+
+      <a href="#education">
+        04 / Education
+      </a>
+
+      <a href="#work">
+        05 / Work
+      </a>
+
+      <a href="#experience">
+        06 / Experience
+      </a>
+
+      <a href="#contact">
+        07 / Contact
+      </a>
+
+      <a
+        href="https://drive.google.com/file/d/1h3FaurxZj_oPQtKEpd5cEIpxHG4d-E64/view?usp=drive_link"
+        target="_blank"
+        rel="noopener"
+      >
+        Resume ↗
+      </a>
+
+    </nav>
+
+  </header>
+
+  <main>
+
+    <!-- =================================================
+       HOME
+    ================================================== -->
+
+    <section
+      class="home"
+      id="home"
+    >
+
+      <!-- Background grid -->
+
+      <div
+        class="hero-grid"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        id="particles-js"
+        class="particles-layer"
+        aria-hidden="true"
+      ></div>
+
+      <!-- Decorative circles -->
+
+      <div
+        class="hero-orbit orbit-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="hero-orbit orbit-two"
+        aria-hidden="true"
+      ></div>
+
+      <!-- Home Content -->
+
+      <div class="home-content reveal">
+
+        <p class="eyebrow">
+
+          <span class="status-dot"></span>
+
+          FULL-STACK DEVELOPER
+          ·
+          PUDUCHERRY, INDIA
+
+        </p>
+
+        <h1>
+
+          Hi There,
+
+          <br>
+
+          I'm
+          <span>
+            Thamimul
+          </span>
+
+          <br>
+
+          <strong>
+            Ansari.
+          </strong>
+        </h1>
+
+        <p class="home-intro">
+
+          I build practical web applications,
+          backend systems and AI-powered solutions
+          with a focus on clean interfaces and
+          reliable functionality.
+
+        </p>
+
+        <!-- Typewriter -->
+
+        <div class="typing-line">
+
+          <span>
+            I am into
+          </span>
+
+          <strong
+            class="typing-text"
+          ></strong>
+
+          <span
+            class="typing-cursor"
+          >
+            |
+          </span>
+
+        </div>
+
+        <!-- About Button -->
+
+        <div class="home-actions">
+
+          <a
+            href="#about"
+            class="main-button"
+          >
+
+            <span>
+              About Me
+            </span>
+
+            <i class="fa-solid fa-arrow-down"></i>
+
+          </a>
+
+        </div>
+
+        <!-- Social Icons -->
+
+        <div class="socials">
+
+          <span class="social-label">
+            FIND ME ONLINE
+          </span>
+
+          <div class="social-icons">
+
+            <a
+              class="linkedin"
+              aria-label="LinkedIn"
+              href="https://www.linkedin.com/in/thamimulansarim/"
+              target="_blank"
+              rel="noopener"
+            >
+
+              <i class="fab fa-linkedin-in"></i>
+
+            </a>
+
+            <a
+              class="github"
+              aria-label="GitHub"
+              href="https://github.com/thamim24?tab=repositories"
+              target="_blank"
+              rel="noopener"
+            >
+
+              <i class="fab fa-github"></i>
+
+            </a>
+
+            <a
+              class="twitter"
+              aria-label="X"
+              href="https://x.com/Thamimu67806218"
+              target="_blank"
+              rel="noopener"
+            >
+
+              <i class="fa-brands fa-x-twitter"></i>
+
+            </a>
+
+            <a
+              class="telegram"
+              aria-label="Telegram"
+              href="https://t.me/+919342876443"
+              target="_blank"
+              rel="noopener"
+            >
+
+              <i class="fab fa-telegram-plane"></i>
+
+            </a>
+
+            <a
+              class="instagram"
+              aria-label="Instagram"
+              href="https://www.instagram.com/thamimul_ansari_m/"
+              target="_blank"
+              rel="noopener"
+            >
+
+              <i class="fab fa-instagram"></i>
+
+            </a>
+
           </div>
-          Thamimul Ansari
+
+        </div>
+</div>
+
+      <!-- Home Image -->
+
+      <div class="home-image-wrap reveal reveal-delay">
+
+        <div class="image-index">
+          THAMIMUL ANSARI M
+        </div>
+
+        <div
+          class="profile-frame tilt"
+          data-tilt
+        >
+
+          <div class="profile-frame-inner">
+
+            <img
+              draggable="false"
+              src="./assets/images/hero2.png"
+              alt="Thamimul Ansari"
+            >
+
+          </div>
+
+          <span class="frame-corner top-left"></span>
+          <span class="frame-corner top-right"></span>
+          <span class="frame-corner bottom-left"></span>
+          <span class="frame-corner bottom-right"></span>
+
+        </div>
+
+        <div class="image-caption">
+
+          <span>
+            <!-- THAMIMUL / 2026 -->
+          </span>
+          <span>
+            WEB · BACKEND · AI
+          </span>
+
+        </div>
+
+        <div class="floating-card card-one">
+
+          <span>
+            01
+          </span>
+
+          <strong>
+            BUILD
+          </strong>
+
+        </div>
+
+        <div class="floating-card card-two">
+
+          <span>
+            02
+          </span>
+
+          <strong>
+            SHIP
+          </strong>
+
+        </div>
+
+      </div>
+
+      <!-- Scroll -->
+
+      <a
+        class="scroll-indicator"
+        href="#about"
+      >
+
+        <span>
+          Scroll to explore
+        </span>
+
+        <i class="fa-solid fa-arrow-down"></i>
+
+      </a>
+
+    </section>
+
+    <!-- =================================================
+       ABOUT
+    ================================================== -->
+
+    <section
+      class="about section"
+      id="about"
+    >
+
+      <div class="section-header reveal">
+
+        <span class="section-number">
+          02
+        </span>
+
+        <div>
+
+          <p class="eyebrow">
+            ABOUT ME
+          </p>
+
+          <h2>
+            A little
+            <span>
+              about me.
+            </span>
+          </h2>
+
+        </div>
+
+      </div>
+
+      <div class="about-grid">
+
+        <div class="about-photo reveal">
+
+          <div class="about-photo-frame tilt">
+
+            <img
+              draggable="false"
+              src="./assets/images/hero3.png"
+              alt="Thamimul Ansari"
+            >
+
+          </div>
+
+        </div>
+
+        <div class="about-content reveal reveal-delay">
+
+          <h3>
+            I'm Thamimul Ansari
+          </h3>
+
+          <p class="about-lead">
+
+            B.Tech Information Technology graduate
+            with a strong foundation in software
+            development, object-oriented programming,
+            and database management.
+
+          </p>
+
+          <p>
+
+            Passionate about building full-stack web
+            applications and AI-powered solutions
+            using Java, React, Spring Boot and Node.js.
+            Experienced in developing and deploying
+            real-world projects while continuously
+            learning modern technologies and best
+            development practices.
+
+          </p>
+
+          <div class="about-details">
+
+            <div class="detail-item">
+
+              <span>
+                Mobile No
+              </span>
+
+              <strong>
+                +91 93428 76443
+              </strong>
+
+            </div>
+
+            <div class="detail-item">
+
+              <span>
+                Email
+              </span>
+
+              <strong>
+                thamimul2004@gmail.com
+              </strong>
+
+            </div>
+
+            <div class="detail-item">
+
+              <span>
+                Place
+              </span>
+
+              <strong>
+                Puducherry, India - 605003
+              </strong>
+
+            </div>
+
+            <div class="detail-item">
+
+              <span>
+                Focus
+              </span>
+
+              <strong>
+                Full-Stack · Backend · AI
+              </strong>
+
+            </div>
+
+          </div>
+
+          <a
+            class="outline-button"
+            href="https://drive.google.com/file/d/1h3FaurxZj_oPQtKEpd5cEIpxHG4d-E64/view?usp=drive_link"
+            target="_blank"
+            rel="noopener"
+          >
+
+            <span>
+              View Resume
+            </span>
+
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =================================================
+       SKILLS
+    ================================================== -->
+
+    <section
+      class="skills section"
+      id="skills"
+    >
+
+      <div class="section-header reveal">
+
+        <span class="section-number">
+          03
+        </span>
+
+        <div>
+
+          <p class="eyebrow">
+            SKILLS & ABILITIES
+          </p>
+
+          <h2>
+            Tools I use to
+            <span>
+              build.
+            </span>
+          </h2>
+
+        </div>
+
+      </div>
+
+      <div class="skills-grid">
+
+        <!-- Java -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            01
+          </span>
+
+          <img
+            src="https://img.icons8.com/color/96/java-coffee-cup-logo.png"
+            alt="Java"
+          >
+
+          <h3>
+            Java
+          </h3>
+
+          <p>
+            Core programming,
+            OOP and application development.
+          </p>
+
+        </div>
+
+        <!-- C -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            02
+          </span>
+
+          <img
+            src="https://img.icons8.com/color/96/c-programming.png"
+            alt="C"
+          >
+
+          <h3>
+            C
+          </h3>
+
+          <p>
+            Programming fundamentals,
+            data structures and algorithms.
+          </p>
+
+        </div>
+
+        <!-- Python -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            03
+          </span>
+
+          <img
+            src="https://img.icons8.com/color/96/python.png"
+            alt="Python"
+          >
+
+          <h3>
+            Python
+          </h3>
+
+          <p>
+            Scripting, automation and
+            AI-related development.
+          </p>
+
+        </div>
+
+        <!-- SQL -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            04
+          </span>
+
+          <img
+            src="https://img.icons8.com/color/96/sql.png"
+            alt="SQL"
+          >
+
+          <h3>
+            SQL
+          </h3>
+
+          <p>
+            Database queries,
+            relational data and management.
+          </p>
+
+        </div>
+
+        <!-- React -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            05
+          </span>
+
+          <img
+            src="https://img.icons8.com/color/96/react-native.png"
+            alt="React"
+          >
+
+          <h3>
+            React.js
+          </h3>
+
+          <p>
+            Component-based interfaces
+            and modern frontend development.
+          </p>
+
+        </div>
+
+        <!-- HTML -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            06
+          </span>
+
+          <img
+            src="https://img.icons8.com/color/96/html-5.png"
+            alt="HTML5"
+          >
+
+          <h3>
+            HTML5
+          </h3>
+
+          <p>
+            Semantic structure and
+            responsive web layouts.
+          </p>
+
+        </div>
+
+        <!-- CSS -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            07
+          </span>
+
+          <img
+            src="https://img.icons8.com/color/96/css3.png"
+            alt="CSS3"
+          >
+
+          <h3>
+            CSS3
+          </h3>
+
+          <p>
+            Responsive styling,
+            animation and visual systems.
+          </p>
+
+        </div>
+
+        <!-- JavaScript -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            08
+          </span>
+
+          <img
+            src="https://img.icons8.com/color/96/javascript.png"
+            alt="JavaScript"
+          >
+
+          <h3>
+            JavaScript
+          </h3>
+
+          <p>
+            Interactive interfaces
+            and browser-side logic.
+          </p>
+
+        </div>
+
+        <!-- Node -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            09
+          </span>
+
+          <img
+            src="https://img.icons8.com/color/96/nodejs.png"
+            alt="Node.js"
+          >
+
+          <h3>
+            Node.js
+          </h3>
+
+          <p>
+            Backend services,
+            APIs and server-side applications.
+          </p>
+
+        </div>
+
+        <!-- Mongo -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            10
+          </span>
+
+          <img
+            src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/96/external-mongodb-a-cross-platform-document-oriented-database-program-logo-color-tal-revivo.png"
+            alt="MongoDB"
+          >
+
+          <h3>
+            MongoDB
+          </h3>
+
+          <p>
+            Document-oriented
+            database development.
+          </p>
+
+        </div>
+
+        <!-- TypeScript -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            11
+          </span>
+
+          <img
+            src="https://img.icons8.com/color/96/typescript.png"
+            alt="TypeScript"
+          >
+
+          <h3>
+            TypeScript
+          </h3>
+
+          <p>
+            Typed JavaScript
+            for scalable interfaces.
+          </p>
+
+        </div>
+
+        <!-- Tailwind -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            12
+          </span>
+
+          <img
+            src="https://img.icons8.com/color/96/tailwind_css.png"
+            alt="Tailwind CSS"
+          >
+
+          <h3>
+            Tailwind CSS
+          </h3>
+
+          <p>
+            Utility-first responsive
+            interface development.
+          </p>
+
+        </div>
+
+        <!-- Git -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            13
+          </span>
+
+          <img
+            src="https://img.icons8.com/color/96/git.png"
+            alt="Git"
+          >
+
+          <h3>
+            Git
+          </h3>
+
+          <p>
+            Version control and
+            collaborative development.
+          </p>
+
+        </div>
+
+        <!-- GitHub -->
+
+<div class="skill-card reveal">
+
+  <span class="skill-index">
+    14
+  </span>
+
+  <img
+    class="github-icon"
+    src="https://img.icons8.com/glyph-neue/96/000000/github.png"
+    data-light="https://img.icons8.com/glyph-neue/96/000000/github.png"
+    data-dark="https://img.icons8.com/glyph-neue/96/ffffff/github.png"
+    alt="GitHub"
+  >
+
+  <h3>
+    GitHub
+  </h3>
+
+  <p>
+    Source control,
+    repositories and deployment.
+  </p>
+
+</div>
+
+        <!-- VS Code -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            15
+          </span>
+
+          <img
+            src="https://img.icons8.com/color/96/visual-studio-code-2019.png"
+            alt="VS Code"
+          >
+
+          <h3>
+            VS Code
+          </h3>
+
+          <p>
+            Development,
+            debugging and project work.
+          </p>
+
+        </div>
+
+        <!-- Eclipse -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            16
+          </span>
+
+          <img
+            src="https://img.icons8.com/fluency/96/eclipse.png"
+            alt="Eclipse"
+          >
+
+          <h3>
+            Eclipse
+          </h3>
+
+          <p>
+            Java development and
+            application debugging.
+          </p>
+
+        </div>
+
+        <!-- Excel -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            17
+          </span>
+
+          <img
+            src="https://img.icons8.com/fluency/96/ms-excel.png"
+            alt="Excel"
+          >
+
+          <h3>
+            Excel
+          </h3>
+
+          <p>
+            Data organization,
+            analysis and reporting.
+          </p>
+
+        </div>
+
+        <!-- Documentation -->
+
+        <div class="skill-card reveal">
+
+          <span class="skill-index">
+            18
+          </span>
+
+          <img
+            src="https://img.icons8.com/doodle/96/documents.png"
+            alt="Documentation"
+          >
+
+          <h3>
+            Documentation
+          </h3>
+
+          <p>
+            Technical documentation
+            and project communication.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =================================================
+       EDUCATION
+    ================================================== -->
+
+    <section
+      class="education section"
+      id="education"
+    >
+
+      <div class="section-header reveal">
+
+        <span class="section-number">
+          04
+        </span>
+
+        <div>
+
+          <p class="eyebrow">
+            EDUCATION
+          </p>
+
+          <h2>
+            My academic
+            <span>
+              journey.
+            </span>
+          </h2>
+
+        </div>
+
+      </div>
+
+      <p class="education-quote reveal">
+
+        Education is not the learning of facts,
+        but the training of the mind to think.
+
+      </p>
+
+      <div class="education-list">
+
+        <!-- B.Tech -->
+
+        <article class="education-item reveal">
+
+          <div class="education-year">
+            2022
+            <span>
+              — 2026
+            </span>
+          </div>
+
+          <div class="education-image">
+
+            <img
+              draggable="false"
+              src="./assets/images/educat/college1.jpg"
+              alt="College"
+            >
+
+          </div>
+
+          <div class="education-content">
+
+            <span class="education-type">
+              B.TECH
+            </span>
+
+            <h3>
+              Bachelor of Technology
+              in Information Technology
+            </h3>
+
+            <p>
+              Sri Manakula Vinayagar
+              Engineering College,
+              Puducherry
+            </p>
+
+            <strong>
+              Completed · CGPA: 8.32
+            </strong>
+
+          </div>
+
+        </article>
+
+        <!-- HSC -->
+
+        <article class="education-item reveal">
+
+          <div class="education-year">
+            2020
+            <span>
+              — 2022
+            </span>
+          </div>
+
+          <div class="education-image">
+
+            <img
+              draggable="false"
+              src="./assets/images/educat/school1.jpg"
+              alt="School"
+            >
+
+          </div>
+
+          <div class="education-content">
+
+            <span class="education-type">
+              HSC
+            </span>
+
+            <h3>
+              Higher Secondary Certificate
+            </h3>
+
+            <p>
+              Soorya International
+              Higher Secondary School,
+              Puducherry
+            </p>
+
+            <strong>
+              Completed · Percentage: 92.67%
+            </strong>
+
+          </div>
+
+        </article>
+
+        <!-- SSLC -->
+
+        <article class="education-item reveal">
+
+          <div class="education-year">
+            2019
+            <span>
+              — 2020
+            </span>
+          </div>
+
+          <div class="education-image">
+
+            <img
+              draggable="false"
+              src="./assets/images/educat/school1.jpg"
+              alt="School"
+            >
+
+          </div>
+
+          <div class="education-content">
+
+            <span class="education-type">
+              SSLC
+            </span>
+
+            <h3>
+              Secondary School
+              Leaving Certificate
+            </h3>
+
+            <p>
+              Soorya International
+              Higher Secondary School,
+              Puducherry
+            </p>
+
+            <strong>
+              Completed · Percentage: 93.2%
+            </strong>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- =================================================
+       WORK
+    ================================================== -->
+
+    <section
+      class="work section"
+      id="work"
+    >
+
+      <div class="section-header reveal">
+
+        <span class="section-number">
+          05
+        </span>
+
+        <div>
+
+          <p class="eyebrow">
+            PROJECTS
+          </p>
+
+          <h2>
+            Things I've
+            <span>
+              built.
+            </span>
+          </h2>
+
+        </div>
+
+      </div>
+
+      <div class="projects-list">
+
+        <!-- Project 01 -->
+
+        <article class="project reveal">
+
+          <div class="project-number">
+            01
+          </div>
+
+          <div class="project-content">
+
+            <span class="project-type">
+              MACHINE LEARNING · SECURITY
+            </span>
+
+            <h3>
+              Enterprise
+              <span>
+                Data Guard
+              </span>
+            </h3>
+
+            <p>
+
+              Developed an ML system to detect
+              data leakage, tampering, and
+              unauthorized edits in enterprise
+              document workflows.
+
+            </p>
+
+            <div class="project-tags">
+
+              <span>
+                Machine Learning
+              </span>
+
+              <span>
+                Security
+              </span>
+
+              <span>
+                Python
+              </span>
+
+            </div>
+
+            <div class="project-links">
+
+              <a
+                href="https://youtu.be/h0pzQQGIEiI"
+                target="_blank"
+                rel="noopener"
+              >
+
+                View
+
+                <i class="fas fa-eye"></i>
+
+              </a>
+
+              <a
+                href="https://github.com/thamim24/Enterprise-Insider-Threat-Detection-System"
+                target="_blank"
+                rel="noopener"
+              >
+
+                Code
+
+                <i class="fas fa-code"></i>
+
+              </a>
+
+            </div>
+
+          </div>
+
+          <a
+            class="project-image tilt"
+            href="https://youtu.be/h0pzQQGIEiI"
+            target="_blank"
+            rel="noopener"
+          >
+
+            <img
+              draggable="false"
+              src="./assets/images/projects/1.png"
+              alt="Enterprise Data Guard"
+            >
+
+            <span class="project-arrow">
+              ↗
+            </span>
+
+          </a>
+
+        </article>
+
+        <!-- Project 02 -->
+
+        <article class="project reveal">
+
+          <div class="project-number">
+            02
+          </div>
+
+          <div class="project-content">
+
+            <span class="project-type">
+              FULL-STACK · AI
+            </span>
+
+            <h3>
+              AI Weather
+              <span>
+                App
+              </span>
+            </h3>
+
+            <p>
+
+              Built a full-stack AI weather app
+              with real-time data, maps, and
+              favorites using Java, Spring Boot
+              and React.
+
+            </p>
+
+            <div class="project-tags">
+
+              <span>
+                Java
+              </span>
+
+              <span>
+                Spring Boot
+              </span>
+
+              <span>
+                React
+              </span>
+
+              <span>
+                PostgreSQL
+              </span>
+
+            </div>
+
+            <div class="project-links">
+
+              <a
+                href="https://weather-app-pearl-eta-11.vercel.app/"
+                target="_blank"
+                rel="noopener"
+              >
+
+                View
+
+                <i class="fas fa-eye"></i>
+
+              </a>
+
+              <a
+                href="https://github.com/thamim24/WeatherApp"
+                target="_blank"
+                rel="noopener"
+              >
+
+                Code
+
+                <i class="fas fa-code"></i>
+
+              </a>
+
+            </div>
+
+          </div>
+
+          <a
+            class="project-image tilt"
+            href="https://weather-app-pearl-eta-11.vercel.app/"
+            target="_blank"
+            rel="noopener"
+          >
+
+            <img
+              draggable="false"
+              src="./assets/images/projects/2.png"
+              alt="AI Weather App"
+            >
+
+            <span class="project-arrow">
+              ↗
+            </span>
+
+          </a>
+
+        </article>
+
+        <!-- Project 03 -->
+
+        <article class="project reveal">
+
+          <div class="project-number">
+            03
+          </div>
+
+          <div class="project-content">
+
+            <span class="project-type">
+              WEB · PERSONAL
+            </span>
+
+            <h3>
+              Portfolio
+              <span>
+                Website
+              </span>
+            </h3>
+
+            <p>
+
+              Developed a personal portfolio
+              with smooth navigation and
+              animations using HTML, CSS,
+              and JavaScript.
+
+            </p>
+
+            <div class="project-tags">
+
+              <span>
+                HTML
+              </span>
+
+              <span>
+                CSS
+              </span>
+
+              <span>
+                JavaScript
+              </span>
+
+            </div>
+
+            <div class="project-links">
+
+              <a
+                href="https://thamim24.github.io/my-portfolio/"
+                target="_blank"
+                rel="noopener"
+              >
+
+                View
+
+                <i class="fas fa-eye"></i>
+
+              </a>
+
+              <a
+                href="https://github.com/thamim24/my-portfolio.git"
+                target="_blank"
+                rel="noopener"
+              >
+
+                Code
+
+                <i class="fas fa-code"></i>
+
+              </a>
+
+            </div>
+
+          </div>
+
+          <a
+            class="project-image tilt"
+            href="https://thamim24.github.io/my-portfolio/"
+            target="_blank"
+            rel="noopener"
+          >
+
+            <img
+              draggable="false"
+              src="./assets/images/projects/new_portfolio1.png"
+              alt="Portfolio Website"
+            >
+
+            <span class="project-arrow">
+              ↗
+            </span>
+
+          </a>
+
+        </article>
+
+        <!-- Project 04 -->
+
+        <article class="project reveal">
+
+          <div class="project-number">
+            04
+          </div>
+
+          <div class="project-content">
+
+            <span class="project-type">
+              AI · TRAVEL
+            </span>
+
+            <h3>
+              Sustainable
+              <span>
+                Travel Companion
+              </span>
+            </h3>
+
+            <p>
+
+              Created an AI-powered travel planner
+              recommending eco-friendly routes
+              based on user preferences.
+
+            </p>
+
+            <div class="project-tags">
+
+              <span>
+                AI
+              </span>
+
+              <span>
+                Travel
+              </span>
+
+              <span>
+                Recommendation
+              </span>
+
+            </div>
+
+            <div class="project-links">
+
+              <a
+                href="https://drive.google.com/file/d/1OAKSILkOZneQgO50I8niyYbTm-6TqE_T/view?usp=drive_link"
+                target="_blank"
+                rel="noopener"
+              >
+
+                View
+
+                <i class="fas fa-eye"></i>
+
+              </a>
+
+              <a
+                href="https://github.com/thamim24/My-Projects1/tree/main/TripAI/tripai"
+                target="_blank"
+                rel="noopener"
+              >
+
+                Code
+
+                <i class="fas fa-code"></i>
+
+              </a>
+
+            </div>
+
+          </div>
+
+          <a
+            class="project-image tilt"
+            href="https://github.com/thamim24/My-Projects1/tree/main/TripAI/tripai"
+            target="_blank"
+            rel="noopener"
+          >
+
+            <img
+              draggable="false"
+              src="./assets/images/projects/TripAi.png"
+              alt="Sustainable Travel Companion"
+            >
+
+            <span class="project-arrow">
+              ↗
+            </span>
+
+          </a>
+
+        </article>
+
+      </div>
+
+      <div class="view-all reveal">
+
+        <a
+          href="https://github.com/thamim24?tab=repositories"
+          target="_blank"
+          rel="noopener"
+        >
+
+          <span>
+            View All Projects
+          </span>
+
+          <i class="fas fa-arrow-right"></i>
+
         </a>
 
-        <nav class="navbar">
-            <ul>
-            <li><a class="active" href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="nav-actions">
-        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
-          <span class="theme-toggle__track" aria-hidden="true">
-            <span class="theme-toggle__stars">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-            <span class="theme-toggle__knob">
-              <span class="theme-toggle__icon"></span>
-            </span>
-          </span>
-        </button>
-        <div id="menu" class="fas fa-bars"></div>
-        </div>
-</header>
-<!-- navbar ends -->
-
-
-<!-- hero section starts -->
-<section class="home" id="home">
-    <div id="particles-js"></div>
-
-    <div class="content">
-    <h2>Hi There,<br/> I'm Thamimul <span>Ansari</span></h2>
-    <p>i am into <span class="typing-text"></span></p>
-    <a href="#about" class="btn"><span>About Me</span>
-      <i class="fas fa-arrow-circle-down"></i>
-    </a>
-    <div class="socials">
-        <ul class="social-icons">
-          <li><a class="linkedin" aria-label="LinkedIn" href="https://www.linkedin.com/in/thamimulansarim/" target="_blank"><i class="fab fa-linkedin"></i></a></li> 
-          <li><a class="github" aria-label="GitHub" href="https://github.com/thamim24?tab=repositories" target="_blank"><i class="fab fa-github"></i></a></li>
-          <li><a class="twitter" aria-label="Twitter" href="https://x.com/Thamimu67806218" target="_blank"><i class="fab fa-x-twitter"></i></a></li>
-          <li><a class="telegram" aria-label="Telegram" href="https://t.me/+919342876443" target="_blank"><i class="fab fa-telegram-plane"></i></a></li>
-          <li><a class="instagram" aria-label="Instagram" href="https://www.instagram.com/thamimul_ansari_m/"><i class="fab fa-instagram" target="_blank"></i></a></li>
-          <!-- <li><a class="dev" aria-label="Dev" href="https://dev.to/thamimul_ansari" target="_blank"><i class="fab fa-dev"></i></a></li> -->
-        </ul>
-      </div>
-      <button class="effects-toggle" id="effects-toggle" type="button" aria-pressed="true">
-        <span>Effects</span>
-        <span class="effects-toggle__state">On</span>
-        <span class="effects-toggle__switch" aria-hidden="true">
-          <span class="effects-toggle__knob"></span>
-        </span>
-      </button>
-    </div>
-<div class="image">
-    <img draggable="false" class="tilt" src="./assets/images/hero2.png" alt="">
-</div>
-</section>
-<!-- hero section ends -->
-
-
-<!-- about section starts -->
-<section class="about" id="about">
-    <h2 class="heading"><i class="fas fa-user-alt"></i> About <span>Me</span></h2>
-    
-    <div class="row">
-
-    <div class="image">
-        <img draggable="false" class="tilt" src="./assets/images/hero3.png" alt="">
-    </div>
-    <div class="content">
-        <h3>I'm Thamimul Ansari</h3>
-        <!-- <span class="tag">Frontend Developer</span> -->
-        <p style="text-align: justify;">
-        B.Tech Information Technology graduate with a strong foundation in software development, object-oriented programming, and database management. Passionate about building full-stack web applications and AI-powered solutions using Java, React, Spring Boot and Node.js. Experienced in developing and deploying real-world projects while continuously learning modern technologies and best development practices.
-        </p>
-        
-        <div class="box-container">
-            <!-- <div class="box">
-              <p><span> age: </span> 20</p>
-              <p><span> phone : </span> +91 XXX-XXX-XXXX</p>
-            </div> -->
-            <div class="box">
-              <p><span> Mobile No &nbsp;: </span>&nbsp;&nbsp;&nbsp;&nbsp;+91 93428 76443</p>
-              <p><span> Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span> &nbsp;&nbsp;&nbsp;&nbsp;thamimul2004@gmail.com</p>
-              <p><span> Place&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span> &nbsp;&nbsp;&nbsp;&nbsp;Puducherry, India - 605003</p>
-            </div>
-        </div>
-        
-        <div class="resumebtn">
-            <a href="https://drive.google.com/file/d/1h3FaurxZj_oPQtKEpd5cEIpxHG4d-E64/view?usp=drive_link" target="_blank" class="btn"><span>Resume</span>
-                <i class="fas fa-chevron-right"></i>
-            </a>
-        </div>
-
-    </div>
-    </div>
-</section>
-<!-- about section ends -->
-
-<!-- skills section starts -->
-<section class="skills" id="skills">
-
-  <h2 class="heading"><i class="fas fa-laptop-code"></i> Skills & <span>Abilities</span></h2>
-
-  <div class="container">
-    <div class="row" id="skillsContainer">
-
-      <!-- Programming Languages -->
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo.png"/>
-          <span>Java</span>
-        </div>
       </div>
 
+    </section>
 
+    <!-- =================================================
+       EXPERIENCE
+    ================================================== -->
 
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/c-programming.png"/>
-          <span>C</span>
-        </div>
-      </div>
-
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/000000/python.png"/>
-          <span>Python</span>
-        </div>
-      </div>
-
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/000000/sql.png"/>
-          <span>SQL</span>
-        </div>
-      </div>
-
-      <!-- Frontend & UI -->
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/000000/react-native.png"/>
-          <span>React.js</span>
-        </div>
-      </div>
-
-      <!-- <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/000000/nextjs.png"/>
-          <span>Next.js</span>
-        </div>
-      </div> -->
-
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/000000/html-5.png"/>
-          <span>HTML5</span>
-        </div>
-      </div>
-
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/000000/css3.png"/>
-          <span>CSS3</span>
-        </div>
-      </div>
-
-      <!-- <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/000000/figma.png"/>
-          <span>Figma</span>
-        </div>
-      </div> -->
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/000000/javascript.png"/>
-          <span>JavaScript</span>
-        </div>
-      </div>
-
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/000000/nodejs.png"/>
-          <span>Node.js</span>
-        </div>
-      </div>
-
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/external-mongodb-a-cross-platform-document-oriented-database-program-logo-color-tal-revivo.png"/>
-          <span>MongoDB</span>
-        </div>
-      </div>      
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/000000/typescript.png"/>
-          <span>TypeScript</span>
-        </div>
-      </div>
-
-      <!-- Backend & DB -->
-
-
-
-
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/000000/tailwind_css.png"/>
-          <span>Tailwind CSS</span>
-        </div>
-      </div>      
-
-      <!-- Tools & Platforms -->
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/000000/git.png"/>
-          <span>Git</span>
-        </div>
-      </div>
-
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/glyph-neue/48/ffffff/github.png"/>
-          <span>GitHub</span>
-        </div>
-      </div>
-
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/color/48/000000/visual-studio-code-2019.png"/>
-          <span>VS Code</span>
-        </div>
-      </div>
-
-      <!-- <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/fluency/48/jupyter.png"/>
-          <span>Jupyter</span>
-        </div>
-      </div> -->
-
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/fluency/48/eclipse.png"/>
-          <span>Eclipse</span>
-        </div>
-      </div>
-
-      <!-- Frameworks & Libraries -->
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/fluency/48/000000/ms-excel.png"/>
-          <span>Excel</span>
-        </div>
-      </div>
-
-      <!-- <div class="bar">
-        <div class="info">
-          <img src="https://raw.githubusercontent.com/valohai/ml-logos/master/pandas.svg" style="width: 116px;"/>
-          <span>Pandas</span>
-        </div>
-      </div> -->
-
-      <!-- <div class="bar">
-        <div class="info">
-          <img src="https://raw.githubusercontent.com/valohai/ml-logos/master/numpy.svg" style="width: 48px;" />
-          <span>NumPy</span>
-        </div>
-      </div> -->
-      
-      <!-- Concepts -->
-      <!-- <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/external-flaticons-flat-flat-icons/48/external-agile-agile-flaticons-flat-flat-icons.png"/>
-          <span>Agile</span>
-        </div>
-      </div> -->
-      <div class="bar">
-        <div class="info">
-          <img src="https://img.icons8.com/doodle/48/000000/documents.png"/>
-          <span>Documentation</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-<!-- skills section ends -->
-
-<!-- education section starts -->
-<section class="education" id="education">
-
-  <h1 class="heading"><i class="fas fa-graduation-cap"></i> My <span>Education</span></h1>
-
-    <p class="qoute">Education is not the learning of facts, but the training of the mind to think.</p>
-
-    <div class="box-container">
-
-    <div class="box">
-        <div class="image">
-        <img draggable="false" src="./assets/images/educat/college1.jpg" alt="">
-        </div>
-        <div class="content">
-        <h3>Bachelor of Technology in Information Technology</h3>
-        <p>Sri Manakula Vinayagar Engineering College, Puducherry</p>
-        <h4>2022-2026 | Pursuing | CGPA: 8.32</h4>
-        </div>
-    </div>
-
-    <div class="box">
-      <div class="image">
-      <img draggable="false" src="./assets/images/educat/school1.jpg" alt="">
-      </div>
-      <div class="content">
-      <h3>Higher Secondary Certificate</h3>
-      <p>Soorya International Higher Secondary School, Puducherry</p>
-      <h4>2020-2022 | Completed | Percentage: 92.67%</h4>
-      </div>
-    </div>
-
-    <div class="box">
-      <div class="image">
-      <img draggable="false" src="./assets/images/educat/school1.jpg" alt="">
-      </div>
-      <div class="content">
-      <h3>Secondary School Leaving Certificate</h3>
-      <p>Soorya International Higher Secondary School, Puducherry</p>
-      <h4>2019-2020 | Completed | Percentage: 93.2%</h4>
-      </div>
-    </div>  
-
-</div>
-</section>
-<!-- education section ends -->
-
-
-<!-- work project section starts -->
-<section class="work" id="work">
-
-  <h2 class="heading"><i class="fas fa-laptop-code"></i> Projects <span>Made</span></h2>
-
-  <div class="box-container">
-
-    <div class="box tilt">
-      <img draggable="false" src="./assets/images/projects/1.png" alt="New Project Image" />
-      <div class="content">
-        <div class="tag">
-          <h3>Enterprise Data Guard</h3>
-        </div>
-        <div class="desc">
-          <p>Developed an ML system to detect data leakage, tampering, and unauthorized edits in enterprise document workflows.</p>
-          <div class="btns">
-            <a href="https://youtu.be/h0pzQQGIEiI" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
-            <a href="https://github.com/thamim24/Enterprise-Insider-Threat-Detection-System" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="box tilt">
-      <img draggable="false" src="./assets/images/projects/2.png" alt="AI Weather App" />
-      <div class="content">
-        <div class="tag">
-          <h3>AI Weather App</h3>
-        </div>
-        <div class="desc">
-          <p>Built a full-stack AI weather app with real-time data, maps, and favorites (Java, Spring Boot, React).</p>
-          <div class="btns">
-            <a href="https://weather-app-pearl-eta-11.vercel.app/" class="btn" target="_blank">
-              <i class="fas fa-eye"></i> View
-            </a>
-            <a href="https://github.com/thamim24/WeatherApp" class="btn" target="_blank">
-              Code <i class="fas fa-code"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="box tilt">
-      <img draggable="false" src="./assets/images/projects/portfolio_new.png" alt="" />
-      <div class="content">
-        <div class="tag">
-        <h3>Portfolio Website Redesign</h3>
-        </div>
-        <div class="desc">
-          <p>Developed a personal portfolio with smooth navigation and animations using HTML, CSS, and JavaScript.</p>
-          <div class="btns">
-            <a href="https://thamim24.github.io/my-portfolio/" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
-            <a href="https://github.com/thamim24/my-portfolio.git" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="box tilt">
-      <img draggable="false" src="./assets/images/projects/TripAi.png" alt="" />
-      <div class="content">
-        <div class="tag">
-        <h3>Sustainable Travel Companion</h3>
-        </div>
-        <div class="desc">
-          <p>Created an AI-powered travel planner recommending eco-friendly routes based on user preferences.</p>
-          <div class="btns">
-            <a href="https://drive.google.com/file/d/1OAKSILkOZneQgO50I8niyYbTm-6TqE_T/view?usp=drive_link" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
-            <a href="https://github.com/thamim24/My-Projects1/tree/main/TripAI/tripai" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    </div>
-
-</div>
-
-<div class="viewall">
-  <a href="https://github.com/thamim24/My-Projects1/tree/main" target="_blank" class="btn"><span>View All</span>
-    <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-
-</section>
-<!-- work project section ends -->
-
-<!-- experience section starts -->
 <section class="experience" id="experience">
 
-  <h2 class="heading"><i class="fas fa-briefcase"></i> Experience</h2>
-  <div class="quote">
-      <span>Every experience in your life is being orchestrated to teach you something you need to know to move forward.</span>
+  <div class="section-header reveal">
+
+    <div class="section-number">
+      06
+    </div>
+
+    <div>
+      <div class="eyebrow">
+        Experience
+      </div>
+
+      <h2>
+        Where I've
+        <span>learned.</span>
+      </h2>
+    </div>
+
   </div>
 
-  <div class="timeline">
+  <p class="experience-quote reveal">
+    Every experience in your life is being orchestrated to teach you something you need to know to move forward.
+  </p>
 
-    <div class="container right">
-      <div class="content">
-        <div class="tag">
-          <a href="https://drive.google.com/file/d/1PKK4-z7A4qOzpf7bcA8IkVuWKab07T-g/view" target="_blank"><h2>AWS AI-ML Virtual Internship</h2></a>
-        </div>
-        <div class="desc">
-            <h3>AWS | AICTE | EduSkills</h3>
-            <p>Apr 2025 - Jun 2025</p>
-        </div>
+  <div class="experience-timeline">
+
+    <!-- 01 -->
+    <article class="experience-card experience-left reveal">
+
+      <div class="experience-node">
+        <span>01</span>
+        <i class="fas fa-briefcase"></i>
       </div>
-    </div>
 
-    <div class="container left">
-      <div class="content">
-        <div class="tag">
-           <a href="https://drive.google.com/file/d/1C8GkxfHjRgYBeLAbXiLwxkdxfzuPq7Ps/view" target="_blank"><h2>Android Developer Virtual Internship</h2></a>
+      <div class="experience-card-content">
+
+        <div class="experience-card-top">
+          <span class="experience-type">
+            INTERNSHIP
+          </span>
+
+          <span class="experience-date">
+            Apr 2025 – Jun 2025
+          </span>
         </div>
-        <div class="desc">
-            <h3>Google | AICTE | EduSkills</h3>
-            <p>Oct 2024 - Dec 2024</p>
-        </div>
+
+        <h3>
+          AWS AI-ML Virtual Internship
+        </h3>
+
+        <p>
+          AWS | AICTE | EduSkills
+        </p>
+
       </div>
-    </div>
 
-    <div class="container right">
-      <div class="content">
-        <div class="tag">
-            <a href="https://drive.google.com/file/d/168TOdYvmuGrahd5ivqL6RuvPy6ysExL0/view" target="_blank"><h2>Gen AI & XR Internship</h2></a>
-        </div>
-        <div class="desc">
-            <h3>FLAUNCH Emerging Tech</h3>
-            <p>Oct 2024 - Nov 2024</p>
-        </div>
+    </article>
+
+    <!-- 02 -->
+    <article class="experience-card experience-right reveal">
+
+      <div class="experience-node">
+        <span>02</span>
+        <i class="fas fa-briefcase"></i>
       </div>
-    </div>
 
-    <div class="container left">
-      <div class="content">
-        <div class="tag">
-          <a href="https://cert.diceid.com/cid/o2g8QUmTvg" target="_blank"><h2>Web Development Internship</h2></a>
+      <div class="experience-card-content">
+
+        <div class="experience-card-top">
+          <span class="experience-type">
+            INTERNSHIP
+          </span>
+
+          <span class="experience-date">
+            Oct 2024 – Dec 2024
+          </span>
         </div>
-        <div class="desc">
-            <h3>Corizo</h3>
-            <p>Apr 2024 - May 2024</p>
-        </div>
+
+        <h3>
+          Android Developer Virtual Internship
+        </h3>
+
+        <p>
+          Google | AICTE | EduSkills
+        </p>
+
       </div>
-    </div>
 
-    <div class="container right">
-      <div class="content">
-        <div class="tag">
-          <h2>Innovation Program Participant</h2>
-        </div>
-        <div class="desc">
-            <h3>Unisys Innovation Program Y16</h3>
-            <p>Apr 2025</p>
-        </div>
+    </article>
+
+    <!-- 03 -->
+    <article class="experience-card experience-left reveal">
+
+      <div class="experience-node">
+        <span>03</span>
+        <i class="fas fa-briefcase"></i>
       </div>
-    </div>
 
-  <!-- <div class="morebtn">
-    <a href="/experience" class="btn"><span>View All</span>
-      <i class="fas fa-arrow-right"></i>
-  </a>
-  </div> -->
+      <div class="experience-card-content">
 
-</div>
+        <div class="experience-card-top">
+          <span class="experience-type">
+            INTERNSHIP
+          </span>
+
+          <span class="experience-date">
+            Oct 2024 – Nov 2024
+          </span>
+        </div>
+
+        <h3>
+          Gen AI Internship
+        </h3>
+
+        <p>
+          FLAUNCH Emerging Tech
+        </p>
+
+      </div>
+
+    </article>
+
+    <!-- 04 -->
+    <article class="experience-card experience-right reveal">
+
+      <div class="experience-node">
+        <span>04</span>
+        <i class="fas fa-briefcase"></i>
+      </div>
+
+      <div class="experience-card-content">
+
+        <div class="experience-card-top">
+          <span class="experience-type">
+            INTERNSHIP
+          </span>
+
+          <span class="experience-date">
+            Apr 2024 – May 2024
+          </span>
+        </div>
+
+        <h3>
+          Web Development Internship
+        </h3>
+
+        <p>
+          Corizo
+        </p>
+
+      </div>
+
+    </article>
+
+    <!-- 05 -->
+    <article class="experience-card experience-left reveal">
+
+      <div class="experience-node">
+        <span>05</span>
+        <i class="fas fa-briefcase"></i>
+      </div>
+
+      <div class="experience-card-content">
+
+        <div class="experience-card-top">
+          <span class="experience-type">
+            PROGRAM
+          </span>
+
+          <span class="experience-date">
+            Apr 2025
+          </span>
+        </div>
+
+        <h3>
+          Innovation Program Participant
+        </h3>
+
+        <p>
+          Unisys Innovation Program Y16
+        </p>
+
+      </div>
+
+    </article>
+
+  </div>
 
 </section>
-<!-- experience section ends -->
 
-<!-- contact section starts -->
-<section class="contact" id="contact">
-  
-  <h2 class="heading"><i class="fas fa-headset"></i> Get in <span>Touch</span></h2>
+    <!-- =================================================
+       CONTACT
+    ================================================== -->
 
-  <div class="container">
-    <div class="content">
-      <div class="image-box">
-        <img draggable="false" src="./assets/images/contact1.png" alt="">
-      </div>
-    <form id="contact-form">
-      
-      <div class="form-group">
-        <div class="field">
-          <input type="text" name="name" placeholder="Name" required>
-          <i class='fas fa-user'></i>
+    <section
+      class="contact section"
+      id="contact"
+    >
+
+      <div class="section-header reveal">
+
+        <span class="section-number">
+          07
+        </span>
+
+        <div>
+
+          <p class="eyebrow">
+            CONTACT
+          </p>
+
+          <h2>
+            Get in
+            <span>
+              touch.
+            </span>
+          </h2>
+
         </div>
-        <div class="field">
-          <input type="text" name="email" placeholder="Email" required>
-          <i class='fas fa-envelope'></i>
-        </div>
-        <div class="field">
-          <input type="text" name="phone" placeholder="Phone">
-          <i class='fas fa-phone-alt'></i>
-        </div>
-        <div class="message">
-        <textarea placeholder="Message" name="message" required></textarea>
-        <i class="fas fa-comment-dots"></i>
-        </div>
-        </div>
-      <div class="button-area">
-        <button type="submit">
-          Submit <i class="fa fa-paper-plane"></i></button>
-      </div>
-    </form>
-  </div>
-  </div>
-</section>
-<!-- contact section ends -->
 
-
-<!-- footer section starts -->
-<section class="footer">
-
-  <div class="box-container">
-
-      <div class="box">
-          <h3>Thamimul's Portfolio</h3>
-          <p>Thank you for visiting my personal portfolio website. Connect with me over socials. <br/> <br/> Keep Rising 🚀.</p>
       </div>
 
-      <div class="box">
-          <h3>Quick links</h3>
-          <a href="#home"><i class="fas fa-chevron-circle-right"></i> Home</a>
-          <a href="#about"><i class="fas fa-chevron-circle-right"></i> About</a>
-          <a href="#skills"><i class="fas fa-chevron-circle-right"></i> Skills</a>
-          <a href="#education"><i class="fas fa-chevron-circle-right"></i> Education</a>
-          <a href="#work"><i class="fas fa-chevron-circle-right"></i> Work</a>
-          <a href="#experience"><i class="fas fa-chevron-circle-right"></i> Experience</a>
-      </div>
+      <div class="contact-panel reveal">
 
-      <div class="box">
-          <h3>Contact Info</h3>
-          <p> <i class="fas fa-phone"></i>+91 93428 76443</p>
-          <p> <i class="fas fa-envelope"></i>thamimul2004@gmail.com</p>
-          <p> <i class="fas fa-map-marked-alt"></i>Puducherry, India-605003</p>
-          <div class="share">
+        <!-- Contact information -->
 
-              <a href="https://www.linkedin.com/in/thamimulansarim/" class="fab fa-linkedin" aria-label="LinkedIn" target="_blank"></a>
-              <a href="https://github.com/thamim24?tab=repositories" class="fab fa-github" aria-label="GitHub" target="_blank"></a>
-              <a href="mailto:thamimul2004@gmail.com" class="fas fa-envelope" aria-label="Mail" target="_blank"></a>
-              <a href="https://x.com/Thamimu67806218" class="fab fa-x-twitter" aria-label="Twitter" target="_blank"></a>
-              <a href="https://t.me/+919342876443" class="fab fa-telegram-plane" aria-label="Telegram" target="_blank"></a>
+        <div class="contact-info">
+
+          <div class="contact-image">
+
+            <img
+              draggable="false"
+              src="./assets/images/contact1.png"
+              alt="Contact"
+            >
+
           </div>
+
+          <h3>
+            Let's connect.
+          </h3>
+
+          <p>
+
+            Have a project, opportunity or
+            something worth discussing?
+            Send me a message.
+
+          </p>
+
+          <div class="contact-details">
+
+            <a href="mailto:thamimul2004@gmail.com">
+
+              <i class="fas fa-envelope"></i>
+
+              <span>
+                thamimul2004@gmail.com
+              </span>
+
+            </a>
+
+            <a href="tel:+919342876443">
+
+              <i class="fas fa-phone"></i>
+
+              <span>
+                +91 93428 76443
+              </span>
+
+            </a>
+
+            <div>
+
+              <i class="fas fa-map-marker-alt"></i>
+
+              <span>
+                Puducherry, India - 605003
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="contact-socials">
+
+            <a
+              href="https://www.linkedin.com/in/thamimulansarim/"
+              target="_blank"
+              rel="noopener"
+              aria-label="LinkedIn"
+            >
+
+              <i class="fab fa-linkedin-in"></i>
+
+            </a>
+
+            <a
+              href="https://github.com/thamim24?tab=repositories"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub"
+            >
+
+              <i class="fab fa-github"></i>
+
+            </a>
+
+            <a
+              href="mailto:thamimul2004@gmail.com"
+              aria-label="Email"
+            >
+
+              <i class="fas fa-envelope"></i>
+
+            </a>
+
+            <a
+              href="https://x.com/Thamimu67806218"
+              target="_blank"
+              rel="noopener"
+              aria-label="X"
+            >
+
+              <i class="fa-brands fa-x-twitter"></i>
+
+            </a>
+
+            <a
+              href="https://t.me/+919342876443"
+              target="_blank"
+              rel="noopener"
+              aria-label="Telegram"
+            >
+
+              <i class="fab fa-telegram-plane"></i>
+
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- Contact form -->
+
+        <form
+          id="contact-form"
+          class="contact-form"
+        >
+
+          <div class="form-heading">
+
+            <span>
+              SEND A MESSAGE
+            </span>
+
+            <h3>
+              Tell me what you're
+              working on.
+            </h3>
+
+          </div>
+
+          <div class="form-group">
+
+            <label class="field">
+
+              <span>
+                Name
+              </span>
+
+              <input
+                type="text"
+                name="name"
+                placeholder="Your name"
+                required
+              >
+
+            </label>
+
+            <label class="field">
+
+              <span>
+                Email
+              </span>
+
+              <input
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+              >
+
+            </label>
+
+            <label class="field">
+
+              <span>
+                Phone
+              </span>
+
+              <input
+                type="text"
+                name="phone"
+                placeholder="+91..."
+              >
+
+            </label>
+
+            <label class="field message-field">
+
+              <span>
+                Message
+              </span>
+
+              <textarea
+                name="message"
+                placeholder="Write your message..."
+                required
+              ></textarea>
+
+            </label>
+
+          </div>
+
+          <button
+            type="submit"
+            class="submit-button"
+          >
+
+            <span>
+              Send Message
+            </span>
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+          </button>
+
+        </form>
+
       </div>
-  </div>
 
-  <h1 class="credit">Designed with <i class="fa fa-heart pulse"></i> by <a href="https://www.linkedin.com/in/thamimul-ansari"> Thamimul Ansari</a></h1>
+    </section>
 
-</section>
-<!-- footer section ends -->
+  </main>
 
+  <!-- =====================================================
+     FOOTER
+  ====================================================== -->
 
-<!-- scroll top btn -->
-<a href="#home" aria-label="ScrollTop" class="fas fa-angle-up" id="scroll-top"></a>
-<!-- scroll back to top -->
+  <footer class="footer">
 
+    <div class="footer-grid">
 
-<!-- ==== ALL MAJOR JAVASCRIPT CDNS STARTS ==== -->
-<!-- jquery cdn -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <div class="footer-brand">
 
-<!-- typed.js cdn -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js" integrity="sha512-1KbKusm/hAtkX5FScVR5G36wodIMnVd/aP04af06iyQTkD17szAMGNmxfNH+tEuFp3Og/P5G32L1qEC47CZbUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <h3>
+          Thamimul's Portfolio
+        </h3>
 
-<!-- particle.js links -->
-<script src="./assets/js/particles.min.js"></script>
-<script src="./assets/js/app.js"></script>
+        <p>
 
-<!-- vanilla tilt.js links -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js" integrity="sha512-SttpKhJqONuBVxbRcuH0wezjuX+BoFoli0yPsnrAADcHsQMW8rkR84ItFHGIkPvhnlRnE2FaifDOUw+EltbuHg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+          Thank you for visiting my personal
+          portfolio website. Connect with me
+          over socials.
 
-<!-- scroll reveal anim -->
-<script src="https://unpkg.com/scrollreveal"></script>
+        </p>
 
-<script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"
-    ></script>
+      </div>
 
-<!-- ==== ALL MAJOR JAVASCRIPT CDNS ENDS ==== -->
+      <div class="footer-links">
 
-<script src="./assets/js/script.js"></script>
+        <h3>
+          Quick Links
+        </h3>
 
-<!-- Start of Tawk.to Live Chat
-<script type="text/javascript">
-var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        <a href="#home">
+          Home
+        </a>
 
-// Optional: Customize the widget appearance
-Tawk_API.customStyle = {
-    visibility: {
-        desktop: {
-            position: 'bl', // bottom right
-            xOffset: 20,
-            yOffset: 20
-        },
-        mobile: {
-            position: 'bl',
-            xOffset: 10,
-            yOffset: 10
-        }
-    }
-};
+        <a href="#about">
+          About
+        </a>
 
-var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-(function () {
-    var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-    s1.async = true;
-    s1.src = 'https://embed.tawk.to/60df10bf7f4b000ac03ab6a8/1f9jlirg6';
-    s1.charset = 'UTF-8';
-    s1.setAttribute('crossorigin', '*');
-    s0.parentNode.insertBefore(s1, s0);
-})();
-</script> -->
+        <a href="#skills">
+          Skills
+        </a>
+
+        <a href="#education">
+          Education
+        </a>
+
+        <a href="#work">
+          Work
+        </a>
+
+        <a href="#experience">
+          Experience
+        </a>
+
+        <a href="#contact">
+          Contact
+        </a>
+
+      </div>
+
+      <div class="footer-contact">
+
+        <h3>
+          Contact Info
+        </h3>
+
+        <p>
+          +91 93428 76443
+        </p>
+
+        <p>
+          thamimul2004@gmail.com
+        </p>
+
+        <p>
+          Puducherry, India-605003
+        </p>
+
+        <div class="footer-socials">
+
+          <a
+            href="https://www.linkedin.com/in/thamimulansarim/"
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn"
+          >
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+
+          <a
+            href="https://github.com/thamim24?tab=repositories"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+
+          <a
+            href="mailto:thamimul2004@gmail.com"
+            aria-label="Email"
+          >
+            <i class="fas fa-envelope"></i>
+          </a>
+
+          <a
+            href="https://x.com/Thamimu67806218"
+            target="_blank"
+            rel="noopener"
+            aria-label="X"
+          >
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+
+          <a
+            href="https://t.me/+919342876443"
+            target="_blank"
+            rel="noopener"
+            aria-label="Telegram"
+          >
+            <i class="fab fa-telegram-plane"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <span>
+        © <span id="year"></span> Thamimul Ansari
+      </span>
+
+      <span>
+        Designed & built with intention.
+      </span>
+
+      <a href="#home">
+        Back to top ↑
+      </a>
+
+    </div>
+
+  </footer>
+
+  <!-- Back to top -->
+
+  <a
+    href="#home"
+    id="scroll-top"
+    class="scroll-top"
+    aria-label="Scroll to top"
+  >
+    ↑
+  </a>
+
+  <!-- =====================================================
+     EMAILJS
+  ====================================================== -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"
+  ></script>
+
+  <!-- Main JS -->
+
+  <script src="./assets/js/particle.js"></script>
+  <script src="./assets/js/script.js"></script>
+
 </body>
+
 </html>
