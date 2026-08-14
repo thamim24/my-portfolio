@@ -248,25 +248,20 @@ body.dark-theme .site-header{
     position: absolute;
     top: 50%;
     left: 16px;
-
     width: 26px;
     height: 26px;
-
     display: grid;
     place-items: center;
-
     color: #111;
     font-size: 1.35rem;
     line-height: 1;
-
     transform: translate(-50%, -50%);
-
     z-index: 3;
     pointer-events: none;
-
     transition:
         left .45s var(--ease),
-        color .4s ease;
+        color .4s ease,
+        transform .45s var(--ease);
 }
 .theme-knob{
     position:absolute;
@@ -299,6 +294,7 @@ body.dark-theme .theme-knob{
 body.dark-theme .theme-icon {
     left: 48px;
     color: #f4f2eb;
+    transform: translate(-50%, -50%) rotate(45deg);
 }
 .menu-button{
     display:none;

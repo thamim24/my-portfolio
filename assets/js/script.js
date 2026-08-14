@@ -304,7 +304,7 @@ function setTheme(theme){
 
     if(themeIcon){
         themeIcon.textContent=
-            dark?"⏾":"☀";
+            dark?"☽":"☀";
     }
 
     updateGithubIcon();
